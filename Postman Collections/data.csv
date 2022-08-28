@@ -1,0 +1,5 @@
+endpoint,email,password
+api/register/preprod,diksha@gmail.com,123
+api/register/preprod,rahul@gmail.com,234
+api/register/preprod,df@gmail.com,2345
+

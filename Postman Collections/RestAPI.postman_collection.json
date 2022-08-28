@@ -1,0 +1,80 @@
+{
+	"info": {
+		"_postman_id": "a987ec79-2ac4-4004-ac21-0c36d40e1fa0",
+		"name": "RestAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22993366"
+	},
+	"item": [
+		{
+			"name": "Registration",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Contain Email\",function(){",
+							"    var jsonData = pm.response.json();",
+							"    console.log(\"Json email : - \" + jsonData.email + \" and data email is : - \" + data.email  )",
+							"    pm.expect(jsonData.email).to.eql(data.email);",
+							"    ",
+							"})",
+							"",
+							"pm.test(\"Contain Password \",function(){",
+							"    var jsonData = pm.response.json();",
+							"    console.log(\"Json password : - \" + jsonData.password + \" and data password is : - \" + data.password  )",
+							"    console.log( typeof jsonData.password )",
+							"    console.log( typeof data.password )",
+							"    pm.expect(jsonData.password).to.eql(data.password.toString());",
+							"    ",
+							"})",
+							"",
+							"",
+							"",
+							"//tests[\"Contains email\"] = resposeBody.has(data.email);",
+							"//test[\"Contains Password\"] = responsebody.has(data.password);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/{{endpoint}}",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"{{endpoint}}"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,132 @@
+{
+	"info": {
+		"_postman_id": "9f09fc25-adc3-4096-bf5e-d760d3d27177",
+		"name": "APIchaining",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22993366"
+	},
+	"item": [
+		{
+			"name": "Get users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check the status code \" ,function(){",
+							"    pm.response.to.have.status(200)",
+							"})",
+							"",
+							"// pm.test(\"Check for the page landed correctly \", function(){",
+							"//     var jsondata = pm.response.json();",
+							"//     console.log(typeof jsondata.page );",
+							"//     console.log(typeof data.pagenumber );",
+							"//     pm.expect(jsondata.page).to.eql(data.pagenumber)",
+							"// })",
+							"var jsondata = pm.response.json();",
+							"console.log(jsondata.data[0].id)",
+							"console.log(jsondata.data[0].email)",
+							"console.log(jsondata.data[0].first_name)",
+							"pm.collectionVariables.set(\"id\", jsondata.data[0].id);",
+							"pm.collectionVariables.set(\"email\", jsondata.data[0].email);",
+							"pm.collectionVariables.set(\"firstname\", jsondata.data[0].first_name);",
+							"",
+							"",
+							"//pm.test(\"\")",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users?page=1",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check the status code \" ,function(){",
+							"    pm.response.to.have.status(200)",
+							"})",
+							"",
+							"pm.test(\"Check if the name has been updated or not  \" ,function(){",
+							"    var jsonval = pm.response.json();",
+							"    pm.expect(jsonval.name).to.eql(pm.collectionVariables.get(\"firstname\"))",
+							";",
+							"})",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"{{firstname}}\",\n    \"job\": \"zion resident\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users/2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": ""
+		},
+		{
+			"key": "email",
+			"value": ""
+		},
+		{
+			"key": "firstname",
+			"value": ""
+		}
+	]
+}
