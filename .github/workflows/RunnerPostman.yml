@@ -1,9 +1,9 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Runner
+name: Collection runner
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: newman 
+        run: newman Postman Collections/RestAPI.postman_collection.json -d Postman Collections/data.csv
 
     
