@@ -1,9 +1,13 @@
-# This is a basic workflow to help you get started with Actions
-
-name: Collection runner
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: newman Postman Collections/RestAPI.postman_collection.json -d Postman Collections/data.csv
-
-    
+- 
+  name: Checkout
+  uses: actions/checkout@v1
+- 
+  id: run-newman
+  name: "Run API Tests"
+  uses: anthonyvscode/newman-action@v1
+  with: 
+    collection: "http://example.com/collection.json"
+    reporters: cli
+- 
+  name: "Output summary to console"
+  run: "echo ${{ steps.run-newman.outputs.summary }}"
